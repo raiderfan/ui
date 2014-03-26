@@ -809,8 +809,8 @@ body .ui-tooltip {
 }
 .ui-widget-header {
 	border: 1px solid #e78f08;
-	background: #f6a828 url(images/ui-bg_gloss-wave_35_f6a828_500x100.png) 50% 50% repeat-x;
-	color: #ffffff;
+	background: #ff9600 url(images/ui-bg_gloss-wave_35_ff9600_500x100.png) 50% 50% repeat-x;
+	color: #000000;
 	font-weight: bold;
 }
 .ui-widget-header a {
@@ -823,7 +823,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
 	border: 1px solid #cccccc;
-	background: #f6f6f6 url(images/ui-bg_glass_100_f6f6f6_1x400.png) 50% 50% repeat-x;
+	background: #ff9600 url(images/ui-bg_glass_100_ff9600_1x400.png) 50% 50% repeat-x;
 	font-weight: bold;
 	color: #1c94c4;
 }
