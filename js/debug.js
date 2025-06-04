@@ -23,7 +23,7 @@ function __insertAppSpawn(){
 }
 
 function __insertPresetChange(){
-	$.each(AppEngine.persistance.presets, function(key, value) {
+	$.each(AppEngine.persistence.presets, function(key, value) {
 		 $('<input type="button" value="'+key+'" onclick="AppEngine.loadPreset(\''+key+'\');" />').appendTo($('#presetdebug'));
 	});
 }

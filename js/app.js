@@ -113,8 +113,8 @@ var AppEngine = {
 		// Install resizehandler
 		$(window).resize(function(event) { AppEngine.resize() });
 
-		// load persistance
-		this._loadPersistance();
+		// load persistence
+		this._loadPersistence();
 
 //		AppStore.initialize();
 	},
@@ -200,17 +200,17 @@ var AppEngine = {
 	},
 
 	addPreset : function(preset){
-		this.persistance.presets[preset] = {};
+		this.persistence.presets[preset] = {};
 	},
 
 	deletePreset : function(preset){
-		if(typeof this.persistance.presets[preset] !== undefined){
-			this.persistance.presets[preset] = undefined;
+		if(typeof this.persistence.presets[preset] !== undefined){
+			this.persistence.presets[preset] = undefined;
 		}
 	},
 
 	loadPreset : function(preset){
-		if(this.persistance.presets[preset] !== undefined){
+		if(this.persistence.presets[preset] !== undefined){
 			console.log("Preset exists");
 			this.preset = preset;
 			// preset exists :)
@@ -222,7 +222,7 @@ var AppEngine = {
 			});
 			console.log("done");
 			console.log("loading preset '"+preset+"'");
-			$.each(this.persistance.presets[preset], function(index, app) {
+			$.each(this.persistence.presets[preset], function(index, app) {
 				AppEngine.loadApp(app.name, app.position, app.size);
 			});
 			this.resize();
@@ -232,7 +232,7 @@ var AppEngine = {
 
 	savePreset : function(){
 		// empty Preset
-		this.persistance.presets[this.preset] = [];
+		this.persistence.presets[this.preset] = [];
 		console.log("Saving Preset "+this.preset);
 		$.each(this.runningApps, function(index, app) {
 			
@@ -244,23 +244,23 @@ var AppEngine = {
 			console.log("   -  "+JSON.stringify(appData));
 
 
-			AppEngine.persistance.presets[AppEngine.preset].push(appData);
+			AppEngine.persistence.presets[AppEngine.preset].push(appData);
 		});
 
-		this._savePersistance();
+		this._savePersistence();
 
 		console.log("done.");
 	},
 
-	_loadPersistance : function(){
+	_loadPersistence : function(){
 		if (localStorage.getItem("AppEngine") !== null) {
-			this.persistance = JSON.parse(localStorage.getItem("AppEngine"));
+			this.persistence = JSON.parse(localStorage.getItem("AppEngine"));
 			AppEngine.loadPreset("default");
 		} else{
-			$.getJSON('apps/persistance.json', function(data) {
+			$.getJSON('apps/persistence.json', function(data) {
 				console.log( "worked");
-				AppEngine.persistance = data;
-				AppEngine._savePersistance();
+				AppEngine.persistence = data;
+				AppEngine._savePersistence();
 				AppEngine.loadPreset("default");
 			}).fail(function(data) {
 				console.log( "error" );
@@ -269,8 +269,8 @@ var AppEngine = {
 		}
 	},
 
-	_savePersistance : function(){
-		localStorage.setItem("AppEngine",JSON.stringify(this.persistance));
+	_savePersistence : function(){
+		localStorage.setItem("AppEngine",JSON.stringify(this.persistence));
 	},
 
 	resize : function(){
